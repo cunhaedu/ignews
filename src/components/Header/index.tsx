@@ -9,7 +9,7 @@ export function Header() {
 
         <nav className='ml-20 h-20 '>
           <Link href="/">
-            <a className="inline-block relative py-0 px-2 h-20 leading-[5rem] duration-150 text-gray-300 hover:text-white after:content-[''] after:h-[3px] after:rounded-header after:w-full after:absolute after:bottom-[2px] after:left-0 after:bg-yellow-default">
+            <a className="inline-block relative py-0 px-2 h-20 leading-[5rem] duration-150 text-gray-300 hover:text-white after:content-[''] after:h-[3px] after:rounded-header after:w-full after:absolute after:bottom-[2px] after:left-0 after:bg-primary-yellow">
               Home
             </a>
           </Link>

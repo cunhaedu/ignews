@@ -13,9 +13,11 @@ module.exports = {
       backgroundColor: {
         background: '#121214',
         shape: '#1F2729',
-        'yellow-default': '#EBA417',
-        blue: '#61DCFB',
-        green: '#04D361',
+        'primary-yellow': '#EBA417',
+      },
+      textColor: {
+        'primary-blue': '#61DCFB',
+        'black': '#121214',
       },
       borderRadius: {
         header: '3px 3px 0 0',
