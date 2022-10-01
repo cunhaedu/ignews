@@ -1,5 +1,8 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
+import { query } from 'faunadb';
+
+import { fauna } from '../../../services/fauna';
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -15,6 +18,42 @@ export const authOptions: NextAuthOptions = {
       }
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      const { email } = user;
+
+      try {
+        await fauna.query(
+          query.If(
+            query.Not(
+              query.Exists(
+                query.Match(
+                  query.Index('user_by_email'),
+                  query.Casefold(email)
+                )
+              )
+            ),
+            query.Create(
+              query.Collection('users'),
+              { data: { email: email } }
+            ),
+            query.Get(
+              query.Match(
+                query.Index('user_by_email'),
+                query.Casefold(email)
+              )
+            )
+          )
+        );
+
+        return true;
+      } catch (err) {
+        console.log(err);
+
+        return false;
+      }
+    },
+  }
 }
 
 export default NextAuth(authOptions);
