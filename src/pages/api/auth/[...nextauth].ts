@@ -5,7 +5,6 @@ import { query } from 'faunadb';
 import { fauna } from '../../../services/fauna';
 
 export const authOptions: NextAuthOptions = {
-  // Configure one or more authentication providers
   secret: process.env.AUTH_SECRET,
   providers: [
     GithubProvider({
@@ -19,7 +18,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       const { email } = user;
 
       try {
