@@ -5,14 +5,14 @@ import { query as q } from 'faunadb';
 type saveSubscriptionRequest = {
   subscriptionId: string;
   customerId: string;
+  createAction?: boolean;
 }
 
 export async function saveSubscription({
   subscriptionId,
   customerId,
+  createAction = false,
 }: saveSubscriptionRequest) {
-  console.log('cheguei');
-
   const userRef = await fauna.query(
     q.Select(
       "ref",
@@ -34,13 +34,27 @@ export async function saveSubscription({
     priceId: subscription.items.data[0].price.id,
   }
 
-  console.log(subscriptionData);
-
-
-  await fauna.query(
-    q.Create(
-      q.Collection('subscriptions'),
-      { data: subscriptionData }
+  if (createAction) {
+    await fauna.query(
+      q.Create(
+        q.Collection('subscriptions'),
+        { data: subscriptionData }
+      )
     )
-  )
+  } else {
+    await fauna.query(
+      q.Replace(
+        q.Select(
+          "ref",
+          q.Get(
+            q.Match(
+              q.Index('subscription_by_id'),
+              subscriptionId,
+            )
+          )
+        ),
+        { data: subscriptionData }
+      )
+    )
+  }
 }

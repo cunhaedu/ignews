@@ -19,6 +19,9 @@ Then, create the following indexes:
 * user_by_stripe_customer_id
   - Source Collection: Users
   - Terms: data.stripe_customer_id
+* subscription_by_id
+  - Source Collection: Subscriptions
+  - Terms: data.id
 
 ### Stripe
 
