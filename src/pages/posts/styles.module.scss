@@ -1,0 +1,35 @@
+.container {
+  max-width: 1120px;
+  @apply my-0 mx-auto py-0 px-8;
+}
+
+.posts {
+  max-width: 720px;
+  @apply my-20 mx-auto mb-0;
+
+  a {
+    @apply block;
+
+    &+a {
+      @apply mt-8 pt-8 border-t border-t-gray-700;
+    }
+
+    time {
+      @apply text-base flex items-center text-gray-300
+    }
+
+    strong {
+      transition: color 0.2s;
+      @apply block text-xl mt-4
+    }
+
+    p {
+      line-height: 1.625rem;
+      @apply text-gray-300 mt-2
+    }
+
+    &:hover strong {
+      @apply text-yellow-500
+    }
+  }
+}

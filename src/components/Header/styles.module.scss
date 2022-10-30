@@ -1,0 +1,27 @@
+.headerContent {
+  @apply max-w-[1120px] h-20 mx-auto my-0 py-0 px-8 flex items-center;
+
+  nav {
+    a {
+      @apply inline-block relative py-0 px-2 h-20 leading-[5rem] duration-150 text-gray-300;
+
+      &:hover {
+        @apply text-white;
+      }
+
+      &.active {
+        @apply text-white font-bold
+      }
+
+      &.active::after {
+        content: '';
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        bottom: 1px;
+        left: 0;
+
+        @apply bg-primary-yellow absolute w-full
+      }
+    }
+  }
+}
