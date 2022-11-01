@@ -1,0 +1,55 @@
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.post {
+  max-width: 720px;
+  margin: 5rem auto 0;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+  }
+
+  time {
+    font-size: 1rem;
+    @apply text-gray-500 mt-6 block;
+  }
+}
+
+.postContent {
+  @apply mt-8 leading-8 text-lg text-gray-100;
+
+  p,
+  ul {
+    @apply my-6 mx-0;
+  }
+
+  ul {
+    @apply pl-5;
+    text-decoration: dotted;
+
+    li {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &.previewContent {
+    @apply bg-gradient-to-b from-gray-300 to-transparent bg-clip-text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.continueReading {
+  @apply p-8 text-center bg-gray-700 rounded-full text-lg font-bold mt-16 mx-0 mb-8;
+
+  a {
+    @apply text-yellow-500 ml-2;
+
+    &:hover {
+      @apply underline
+    }
+  }
+}
